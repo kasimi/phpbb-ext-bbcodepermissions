@@ -40,4 +40,10 @@ $lang = array_merge($lang, [
 
 	'ACL_CAT_BBCODE_PERMISSIONS_POST_VIEW'		=> 'View BBCodes in posts',
 	'ACL_BBCODE_PERMISSION_CAN_POST_VIEW'		=> 'Can view <strong>[%s]</strong>',
+
+	'ACL_CAT_BBCODE_PERMISSIONS_PM_USE'			=> 'Use BBCodes in PMs',
+	'ACL_BBCODE_PERMISSION_CAN_PM_USE'			=> 'Can use <strong>[%s]</strong>',
+
+	'ACL_CAT_BBCODE_PERMISSIONS_PM_VIEW'		=> 'View BBCodes in PMs',
+	'ACL_BBCODE_PERMISSION_CAN_PM_VIEW'			=> 'Can view <strong>[%s]</strong>',
 ]);

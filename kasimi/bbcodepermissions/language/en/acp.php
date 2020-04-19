@@ -46,4 +46,12 @@ $lang = array_merge($lang, [
 	'BBCODEPERMISSIONS_POST_VIEW'						=> 'post view',
 	'BBCODEPERMISSIONS_MESSAGE_POST_VIEW'				=> 'Message when viewing BBCode [%s] in posts',
 	'BBCODEPERMISSIONS_MESSAGE_POST_VIEW_EXPLAIN'		=> 'Enter a message a user sees when <strong>viewing</strong> the BBCode without permission. Leave it empty to hide the BBCode and its contents from the user entirely.<br><em><br>» BBCodes are supported.<br>» HTML is <strong>not</strong> supported.<br>» Language keys are supported.</em>',
+
+	// Private messages
+	'BBCODEPERMISSIONS_PM_USE'							=> 'PM use',
+	'BBCODEPERMISSIONS_MESSAGE_PM_USE'					=> 'Message when using BBCode [%s] in PMs',
+	'BBCODEPERMISSIONS_MESSAGE_PM_USE_EXPLAIN'			=> 'Enter a message a user sees in addition to phpBB’s default warning message when <strong>using</strong> the BBCode without permission. Leave it empty to not display any additional message.<br><em><br>» BBCodes are <strong>not</strong> supported.<br>» HTML is supported.<br>» Language keys are supported.</em>',
+	'BBCODEPERMISSIONS_PM_VIEW'							=> 'PM view',
+	'BBCODEPERMISSIONS_MESSAGE_PM_VIEW'					=> 'Message when viewing BBCode [%s] in PMs',
+	'BBCODEPERMISSIONS_MESSAGE_PM_VIEW_EXPLAIN'			=> 'Enter a message a user sees when <strong>viewing</strong> the BBCode without permission. Leave it empty to hide the BBCode and its contents from the user entirely.<br><em><br>» BBCodes are supported.<br>» HTML is <strong>not</strong> supported.<br>» Language keys are supported.</em>',
 ]);

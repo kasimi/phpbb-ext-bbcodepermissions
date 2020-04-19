@@ -51,6 +51,14 @@ services:
         tags:
             - { name: 'event.listener' }
 
+    kasimi.bbcodepermissions.listener.pm_listener:
+        class: 'kasimi\bbcodepermissions\event\pm_listener'
+        arguments:
+            - '@kasimi.bbcodepermissions.state'
+            - '@kasimi.bbcodepermissions.helper.text_helper'
+        tags:
+            - { name: 'event.listener' }
+
     kasimi.bbcodepermissions.controller.acp.bbcode_messages:
         class: 'kasimi\bbcodepermissions\controller\acp_bbcode_messages'
         arguments:

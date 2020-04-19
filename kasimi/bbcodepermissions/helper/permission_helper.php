@@ -59,6 +59,9 @@ class permission_helper
 		return [
 			post_listener::PERMISSION_MODE_POST_USE,
 			post_listener::PERMISSION_MODE_POST_VIEW,
+
+			pm_listener::PERMISSION_MODE_PM_USE,
+			pm_listener::PERMISSION_MODE_PM_VIEW,
 		];
 	}
 
