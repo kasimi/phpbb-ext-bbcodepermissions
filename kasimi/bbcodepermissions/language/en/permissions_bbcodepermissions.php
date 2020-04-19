@@ -46,4 +46,10 @@ $lang = array_merge($lang, [
 
 	'ACL_CAT_BBCODE_PERMISSIONS_PM_VIEW'		=> 'View BBCodes in PMs',
 	'ACL_BBCODE_PERMISSION_CAN_PM_VIEW'			=> 'Can view <strong>[%s]</strong>',
+
+	'ACL_CAT_BBCODE_PERMISSIONS_MCHAT_USE'		=> 'Use BBCodes in mChat',
+	'ACL_BBCODE_PERMISSION_CAN_MCHAT_USE'		=> 'Can use <strong>[%s]</strong>',
+
+	'ACL_CAT_BBCODE_PERMISSIONS_MCHAT_VIEW'		=> 'View BBCodes in mChat',
+	'ACL_BBCODE_PERMISSION_CAN_MCHAT_VIEW'		=> 'Can view <strong>[%s]</strong>',
 ]);

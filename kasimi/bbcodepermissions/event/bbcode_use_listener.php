@@ -172,6 +172,8 @@ class bbcode_use_listener implements EventSubscriberInterface
 			}
 		}
 
+		$this->bbcode_use_state->set_errors($errors);
+
 		$event['errors'] = $errors;
 	}
 

@@ -59,6 +59,15 @@ services:
         tags:
             - { name: 'event.listener' }
 
+    kasimi.bbcodepermissions.listener.mchat_listener:
+        class: 'kasimi\bbcodepermissions\event\mchat_listener'
+        arguments:
+            - '@kasimi.bbcodepermissions.state'
+            - '@kasimi.bbcodepermissions.helper.text_helper'
+            - '@language'
+        tags:
+            - { name: 'event.listener' }
+
     kasimi.bbcodepermissions.controller.acp.bbcode_messages:
         class: 'kasimi\bbcodepermissions\controller\acp_bbcode_messages'
         arguments:

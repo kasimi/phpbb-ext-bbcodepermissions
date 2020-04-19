@@ -62,6 +62,9 @@ class permission_helper
 
 			pm_listener::PERMISSION_MODE_PM_USE,
 			pm_listener::PERMISSION_MODE_PM_VIEW,
+
+			mchat_listener::PERMISSION_MODE_MCHAT_USE,
+			mchat_listener::PERMISSION_MODE_MCHAT_VIEW,
 		];
 	}
 
