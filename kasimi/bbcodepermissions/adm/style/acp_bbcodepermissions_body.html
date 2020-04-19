@@ -1,0 +1,68 @@
+{% INCLUDE 'overall_header.html' %}
+
+<a id="maincontent"></a>
+
+{% if S_EDIT_BBCODE_MESSAGE %}
+
+	<a href="{{ U_BACK }}" style="float: {{ S_CONTENT_FLOW_END }};">&laquo; {{ lang('BACK') }}</a>
+
+	<h1>{{ lang('ACP_BBCODEPERMISSIONS_MESSAGES') }}</h1>
+
+	<p>{{ lang('ACP_BBCODEPERMISSIONS_MESSAGES_EXPLAIN') }}</p>
+
+	<form id="acp_bbcodepermission_messages" method="post" action="{{ U_ACTION }}">
+		{% for mode in modes %}
+			<fieldset>
+				<legend>{{ lang('BBCODEPERMISSIONS_MESSAGE_' ~ mode.MODE | upper, BBCODE_TAG) }}</legend>
+				<dl>
+					<dt>{{ lang('BBCODEPERMISSIONS_MESSAGE_' ~ mode.MODE | upper ~ '_EXPLAIN') }}</dt>
+					<dd><textarea id="message_{{ mode.MODE }}" name="message_{{ mode.MODE }}" cols="60" rows="10">{{ mode.MESSAGE }}</textarea></dd>
+				</dl>
+			</fieldset>
+		{% endfor %}
+		<fieldset class="submit-buttons">
+			<legend>{{ lang('SUBMIT') }}</legend>
+			<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}">
+			{{ S_FORM_TOKEN }}
+		</fieldset>
+	</form>
+
+{% else %}
+
+	<h1>{{ lang('ACP_BBCODEPERMISSIONS_MESSAGES') }}</h1>
+
+	<p>{{ lang('ACP_BBCODEPERMISSIONS_MESSAGES_EXPLAIN') }}</p>
+
+	<form id="acp_bbcodepermission_messages" method="post" action="{{ U_ACTION }}">
+		<fieldset class="tabulated">
+			<legend>{{ lang('ACP_BBCODES') }}</legend>
+			<table class="table1 zebra-table" id="down">
+				<thead>
+					<tr>
+						<th>{{ lang('BBCODE_TAG') }}</th>
+						<th>{{ lang('ACP_BBCODEPERMISSIONS_MESSAGE_MODES') }}</th>
+						<th>{{ lang('ACTION') }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for bbcode in bbcodes %}
+					<tr>
+						<td style="text-align: center;">{{ bbcode.BBCODE_TAG }}</td>
+						<td style="text-align: center;">{{ bbcode.MESSAGE_MODES | join(lang('COMMA_SEPARATOR')) }}</td>
+						<td class="actions"><a href="{{ bbcode.U_EDIT }}">{{ ICON_EDIT }}</a></td>
+					</tr>
+					{% else %}
+					<tr class="row3">
+						<td colspan="2">{{ lang('ACP_NO_ITEMS') }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{{ S_FORM_TOKEN }}
+		</fieldset>
+	</form>
+
+{% endif %}
+
+{% INCLUDE 'overall_footer.html' %}

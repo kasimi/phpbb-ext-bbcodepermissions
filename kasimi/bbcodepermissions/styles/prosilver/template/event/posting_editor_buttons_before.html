@@ -1,0 +1,4 @@
+{% if DISALLOWED_BBCODES %}
+	{% INCLUDECSS '@kasimi_bbcodepermissions/common.css' %}
+	<div class="hidden bbcode-no-permission {{ DISALLOWED_BBCODES | join(' ') }}"></div>
+{% endif %}

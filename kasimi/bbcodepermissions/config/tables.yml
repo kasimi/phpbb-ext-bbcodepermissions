@@ -1,0 +1,2 @@
+parameters:
+    kasimi.bbcodepermissions.tables.bbcode_permissions: '%core.table_prefix%bbcode_permissions'

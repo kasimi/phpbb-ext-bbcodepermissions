@@ -1,0 +1,65 @@
+imports:
+    - { resource: 'tables.yml' }
+
+services:
+    kasimi.bbcodepermissions.helper.db_helper:
+        class: 'kasimi\bbcodepermissions\helper\db_helper'
+        arguments:
+            - '@dbal.conn'
+            - '%tables.bbcodes%'
+            - '%tables.posts%'
+            - '%kasimi.bbcodepermissions.tables.bbcode_permissions%'
+
+    kasimi.bbcodepermissions.helper.permission_helper:
+        class: 'kasimi\bbcodepermissions\helper\permission_helper'
+        arguments:
+            - '@auth'
+            - '@migrator.tool.permission'
+            - '@kasimi.bbcodepermissions.helper.db_helper'
+
+    kasimi.bbcodepermissions.helper.text_helper:
+        class: 'kasimi\bbcodepermissions\helper\text_helper'
+        arguments:
+            - '@text_formatter.parser'
+            - '@language'
+            - '@kasimi.bbcodepermissions.helper.permission_helper'
+
+    kasimi.bbcodepermissions.listener.acp_listener:
+        class: 'kasimi\bbcodepermissions\event\acp_listener'
+        arguments:
+            - '@language'
+            - '@kasimi.bbcodepermissions.helper.permission_helper'
+        tags:
+            - { name: 'event.listener' }
+
+    kasimi.bbcodepermissions.listener.bbcode_use_listener:
+        class: 'kasimi\bbcodepermissions\event\bbcode_use_listener'
+        arguments:
+            - '@template'
+            - '@language'
+            - '@kasimi.bbcodepermissions.state'
+            - '@kasimi.bbcodepermissions.helper.permission_helper'
+            - '@kasimi.bbcodepermissions.helper.db_helper'
+        tags:
+            - { name: 'event.listener' }
+
+    kasimi.bbcodepermissions.listener.post_listener:
+        class: 'kasimi\bbcodepermissions\event\post_listener'
+        arguments:
+            - '@kasimi.bbcodepermissions.state'
+            - '@kasimi.bbcodepermissions.helper.text_helper'
+        tags:
+            - { name: 'event.listener' }
+
+    kasimi.bbcodepermissions.controller.acp.bbcode_messages:
+        class: 'kasimi\bbcodepermissions\controller\acp_bbcode_messages'
+        arguments:
+            - '@user'
+            - '@language'
+            - '@request'
+            - '@template'
+            - '@log'
+            - '@kasimi.bbcodepermissions.helper.permission_helper'
+
+    kasimi.bbcodepermissions.state:
+        class: 'kasimi\bbcodepermissions\state'

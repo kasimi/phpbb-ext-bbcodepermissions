@@ -1,0 +1,25 @@
+/**
+ *
+ * BBCode Permissions. An extension for the phpBB Forum Software package.
+ *
+ * @copyright (c) 2020, kasimi, https://kasimi.net
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
+
+.bbcode-no-permission.bbcode-b		~ .format-buttons .bbcode-b,
+.bbcode-no-permission.bbcode-i		~ .format-buttons .bbcode-i,
+.bbcode-no-permission.bbcode-u		~ .format-buttons .bbcode-u,
+.bbcode-no-permission.bbcode-quote	~ .format-buttons .bbcode-quote,
+.bbcode-no-permission.bbcode-code	~ .format-buttons .bbcode-code,
+.bbcode-no-permission.bbcode-list	~ .format-buttons .bbcode-list,
+.bbcode-no-permission.bbcode-list	~ .format-buttons .bbcode-list-,
+.bbcode-no-permission.bbcode-list	~ .format-buttons .bbcode-asterisk,
+.bbcode-no-permission.bbcode-img	~ .format-buttons .bbcode-img,
+.bbcode-no-permission.bbcode-url	~ .format-buttons .bbcode-url,
+.bbcode-no-permission.bbcode-flash	~ .format-buttons .bbcode-flash,
+.bbcode-no-permission.bbcode-color	~ .format-buttons .bbcode-color,
+.bbcode-no-permission.bbcode-size	~ .format-buttons .bbcode-size
+{
+	display: none;
+}
