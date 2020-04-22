@@ -58,7 +58,7 @@ class bbcode_use_listener implements EventSubscriberInterface
 			'core.display_custom_bbcodes_modify_sql'	=> 'display_custom_bbcodes_modify_sql',
 			'core.message_parser_check_message'			=> 'message_parser_check_message',
 			'core.text_formatter_s9e_parse_before'		=> 'text_formatter_s9e_parse_before',
-			'core.text_formatter_s9e_parse_after'		=> 'text_formatter_s9e_parse_after',
+			'core.text_formatter_s9e_get_errors'		=> 'text_formatter_s9e_get_errors',
 		];
 	}
 
@@ -128,20 +128,17 @@ class bbcode_use_listener implements EventSubscriberInterface
 		}
 	}
 
-	public function text_formatter_s9e_parse_after(data $event): void
+	public function text_formatter_s9e_get_errors(data $event)
 	{
 		if (!$this->bbcode_use_state->is_active())
 		{
 			return;
 		}
 
-		/** @var parser $parser */
-		$parser = $event['parser'];
-
-		$parser_errors = $parser->get_errors();
+		$errors = $event['errors'];
 
 		// The parser didn't find any disallowed use of BBCodes
-		if (!$parser_errors)
+		if (!$errors)
 		{
 			return;
 		}
@@ -161,23 +158,21 @@ class bbcode_use_listener implements EventSubscriberInterface
 			array_column($disallowed_bbcodes_with_messages, 'message')
 		);
 
-		$errors = [];
-
-		foreach ($parser_errors as $key => $lang_array)
+		foreach ($errors as $key => $error)
 		{
-			if ($lang_array[0] == 'UNAUTHORISED_BBCODE')
+			if ($error[0] == 'UNAUTHORISED_BBCODE')
 			{
-				$disallowed_bbcode = trim($lang_array[1], '[]');
+				$disallowed_bbcode = trim($error[1], '[]');
 
 				if (isset($bbcode_messages[$disallowed_bbcode]))
 				{
 					$message = htmlspecialchars_decode($bbcode_messages[$disallowed_bbcode], ENT_QUOTES);
-					$errors[] = $this->language->lang($message);
+					$errors[$key] = [$this->language->lang($message)];
 				}
 			}
 		}
 
-		$this->bbcode_use_state->set_errors(array_unique($errors));
+		$event['errors'] = $errors;
 	}
 
 	protected function wrapper(string $prefix, string $postfix = ''): \Closure

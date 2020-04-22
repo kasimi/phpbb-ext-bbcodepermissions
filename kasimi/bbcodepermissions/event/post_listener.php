@@ -44,7 +44,6 @@ class post_listener implements EventSubscriberInterface
 		return [
 			'core.posting_modify_row_data'				=> 'posting_modify_row_data',
 			'core.modify_posting_auth'					=> 'modify_posting_auth',
-			'core.posting_modify_submission_errors'		=> 'posting_modify_submission_errors',
 			'core.viewtopic_modify_post_data'			=> 'process_rowset',
 			'core.topic_review_modify_post_list'		=> 'process_rowset',
 			'core.mcp_get_post_data_after'				=> 'process_rowset',
@@ -66,11 +65,6 @@ class post_listener implements EventSubscriberInterface
 		{
 			$event['post_data'] = $this->text_helper->process_row(self::PERMISSION_MODE_POST_VIEW, $event['post_data'], 'post_text');
 		}
-	}
-
-	public function posting_modify_submission_errors(data $event): void
-	{
-		$event['error'] = array_merge($event['error'], $this->bbcode_use_state->get_errors());
 	}
 
 	public function process_rowset(data $event): void

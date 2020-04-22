@@ -19,9 +19,6 @@ class state
 	/** @var int */
 	protected $forum_id;
 
-	/** @var array */
-	protected $errors = [];
-
 	public function __construct(
 		string $mode = '',
 		int $forum_id = 0
@@ -54,15 +51,5 @@ class state
 	public function set_forum_id(int $forum_id)
 	{
 		$this->forum_id = $forum_id;
-	}
-
-	public function get_errors(): array
-	{
-		return $this->errors;
-	}
-
-	public function set_errors(array $errors): void
-	{
-		$this->errors = $errors;
 	}
 }
