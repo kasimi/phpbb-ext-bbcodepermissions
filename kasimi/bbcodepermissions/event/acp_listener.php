@@ -63,6 +63,9 @@ class acp_listener implements EventSubscriberInterface
 
 	public function permissions(data $event): void
 	{
+		// Temporary fix for PHPBB-16453, to be removed once phpBB 3.2.10 and 3.3.1 are minimum requirements
+		$this->language->add_lang('permissions_bbcodepermissions', 'kasimi/bbcodepermissions');
+
 		$modes = $this->permission_helper->get_permission_modes();
 
 		foreach ($modes as $mode)
