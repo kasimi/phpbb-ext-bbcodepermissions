@@ -18,7 +18,11 @@ class ext extends base
 	public function is_enableable(): bool
 	{
 		return phpbb_version_compare(PHP_VERSION, '7.2.0', '>=')
-			&& phpbb_version_compare(PHPBB_VERSION, '3.2.4', '>=')
+			&& (
+				phpbb_version_compare(PHPBB_VERSION, '3.3.0', '<') && phpbb_version_compare(PHPBB_VERSION, '3.2.10', '>=')
+				||
+				phpbb_version_compare(PHPBB_VERSION, '3.3.1', '>=')
+			)
 		;
 	}
 }
