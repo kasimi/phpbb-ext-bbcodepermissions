@@ -3,8 +3,8 @@
     "type": "phpbb-extension",
     "description": "This extension adds various permissions for using and viewing BBCodes. The permissions allow you to not only prevent users from using them, but also to hide or replace BBCode contents in posts and various other places.",
     "homepage": "https://kasimi.net",
-    "version": "1.0.0-a2",
-    "time": "2020-04-22",
+    "version": "1.0.0-a3",
+    "time": "2020-08-18",
     "license": "GPL-2.0-only",
     "authors": [
         {
