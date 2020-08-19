@@ -14,6 +14,7 @@ services:
         class: 'kasimi\bbcodepermissions\helper\permission_helper'
         arguments:
             - '@auth'
+            - '@ext.manager'
             - '@migrator.tool.permission'
             - '@kasimi.bbcodepermissions.helper.db_helper'
 

@@ -18,12 +18,16 @@ use kasimi\bbcodepermissions\state;
 use phpbb\auth\auth;
 use phpbb\db\migration\exception;
 use phpbb\db\migration\tool\permission as permission_tool;
+use phpbb\extension\manager as ext_manager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class permission_helper
 {
 	/** @var auth */
 	protected $auth;
+
+	/** @var ext_manager */
+	protected $ext_manager;
 
 	/** @var permission_tool */
 	protected $permission_tool;
@@ -33,11 +37,13 @@ class permission_helper
 
 	public function __construct(
 		auth $auth,
+		ext_manager $ext_manager,
 		permission_tool $permission_tool,
 		db_helper $db_helper
 	)
 	{
 		$this->auth				= $auth;
+		$this->ext_manager		= $ext_manager;
 		$this->permission_tool	= $permission_tool;
 		$this->db_helper		= $db_helper;
 	}
@@ -49,23 +55,31 @@ class permission_helper
 	{
 		return new static(
 			$container->get('auth'),
+			$container->get('ext.manager'),
 			$container->get('migrator.tool.permission'),
 			db_helper::get_instance($container)
 		);
 	}
 
-	public function get_permission_modes(): array
+	public function get_permission_modes(bool $force_all = false): array
 	{
-		return [
+		$modes = [
 			post_listener::PERMISSION_MODE_POST_USE,
 			post_listener::PERMISSION_MODE_POST_VIEW,
 
 			pm_listener::PERMISSION_MODE_PM_USE,
 			pm_listener::PERMISSION_MODE_PM_VIEW,
-
-			mchat_listener::PERMISSION_MODE_MCHAT_USE,
-			mchat_listener::PERMISSION_MODE_MCHAT_VIEW,
 		];
+
+		if ($force_all || $this->ext_manager->is_enabled('dmzx/mchat'))
+		{
+			$modes = array_merge($modes, [
+				mchat_listener::PERMISSION_MODE_MCHAT_USE,
+				mchat_listener::PERMISSION_MODE_MCHAT_VIEW,
+			]);
+		}
+
+		return $modes;
 	}
 
 	protected function is_global(string $mode): bool

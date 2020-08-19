@@ -63,7 +63,7 @@ class acp_listener implements EventSubscriberInterface
 
 	public function permissions(data $event): void
 	{
-		$modes = $this->permission_helper->get_permission_modes();
+		$modes = $this->permission_helper->get_permission_modes(true);
 
 		foreach ($modes as $mode)
 		{
