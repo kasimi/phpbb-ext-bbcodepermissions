@@ -64,7 +64,7 @@ class text_helper
 
 	public function process_xml(string $xml, array $disallowed_bbcodes): string
 	{
-		if ($disallowed_bbcodes && substr($xml, 0, 3) === '<r>')
+		if ($disallowed_bbcodes && !preg_match('#^<t[ />]#', $xml))
 		{
 			$dom = new \DOMDocument;
 			$dom->loadXML($xml);
